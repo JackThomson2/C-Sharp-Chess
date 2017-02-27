@@ -31,3 +31,16 @@
 # Debug files
 *.dSYM/
 *.su
+/engine/engine/Debug/engine.tlog
+/engine/engine/x64/Debug/engine.tlog
+/engine/engine/x64/Debug
+/engine/engine/Debug
+/engine/ipch/ENGINE-6b67ee8f
+/engine/x64/Debug
+*.vcxproj
+*.filters
+*.user
+/engine/Debug/engine.pdb
+/engine/.vs/engine/v14/.suo
+/engine/engine.VC.VC.opendb
+/engine/engine.VC.db
