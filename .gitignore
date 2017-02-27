@@ -44,3 +44,7 @@
 /engine/.vs/engine/v14/.suo
 /engine/engine.VC.VC.opendb
 /engine/engine.VC.db
+/JacksEngine/Debug
+/JacksEngine/.vs/JacksEngine/v14
+*.opendb
+*.db

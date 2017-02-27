@@ -1,0 +1,4 @@
+namespace UCI
+{
+	void loop();
+}
