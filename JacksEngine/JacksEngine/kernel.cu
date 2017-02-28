@@ -7,12 +7,7 @@
 #include "UCI.cuh"
 
 
-__global__ void addKernel(int *c, const int *a, const int *b)
-{
-    int i = threadIdx.x;
-	printf("ID : %d\n", threadIdx.x);
-    c[i] = a[i] + b[i];
-}
+
 
 int main()
 {

@@ -3,8 +3,15 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <device_launch_parameters.h>
+#include <cuda_runtime_api.h>
 
 using namespace std;
+
+__global__ void testIndex()
+{
+	printf("Block id : %d Thread id : %d\n", blockIdx.x, threadIdx.x);
+}
 
 void UCI::loop()
 {
@@ -40,6 +47,11 @@ void UCI::loop()
 			//Search::clear();
 			//Tablebases::init(Options["SyzygyPath"]);
 			//Time.availableNodes = 0;
+		}
+		else if (token == "testCudas")
+		{
+			testIndex <<< 1, 1024 >>>();
+			cudaDeviceSynchronize();
 		}
 		else if (token == "isready") cout << "readyok" << endl;
 		else if (token == "go") {
