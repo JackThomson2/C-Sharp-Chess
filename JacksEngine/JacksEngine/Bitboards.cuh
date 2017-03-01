@@ -1,3 +1,6 @@
+#ifndef BITBOARDS
+#define BITBOARDS
+
 #include <array>
 #include "Defs.cuh"
 
@@ -15,6 +18,8 @@ struct
 	int ply;
 	int hisPly;
 
+	int castePerm;
+
 	U64 posKey;
 
 	int pceNum[13];
@@ -22,4 +27,16 @@ struct
 	int majorPce[3];
 	int minorPce[3];
 
+	S_UNDO history[MAXGAMEMOVES];
+
+
+	//Piece List
+	int pList[13][10];	
 } S_BOARD;
+
+
+
+	
+
+
+#endif

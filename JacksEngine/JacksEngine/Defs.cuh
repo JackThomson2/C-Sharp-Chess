@@ -1,17 +1,47 @@
 #ifndef DEFS_H
 #define DEFS_H
 
+#include "stdlib.h"
+
+#define DEBUG
+
+#ifndef DEBUG
+#define ASSERT(n) 
+#else
+#define ASSERT(n) \
+	if(!(n)) {	\
+		printf("\n\n\n"); \
+		printf("%s - Failed\n",#n); \
+		printf("On %s \n",__DATE__); \
+		printf("At %s \n", __TIME__); \
+		printf("In File %s \n", __FILE__); \
+		printf("At Line %d\n\n\n", __LINE__); \
+		exit(1); \
+	} 
+#endif
+
 typedef unsigned long long U64;
 
 #define NAME "Jack's Engine"
 #define BRD_SQ_NUM 120
+#define MAXGAMEMOVES 2048
 
 enum { EMPTY, wP, wN, wB, wR, wQ, wK, bP, bN, bB, bR, bQ, bK };
 
 enum { FILE_A, FILE_B, FILE_C, FILE_D, FILE_E, FILE_F, FILE_G, FILE_H, FILE_NONE};
-enum { RANK_A, RANK_B, RANK_C, RANK_D, RANK_E, RANK_F, RANK_G, RANK_H, RANK_NONE };
+enum { RANK_1, RANK_2, RANK_3, RANK_4, RANK_5, RANK_6, RANK_7, RANK_8, RANK_NONE };
 
 enum { WHITE, BLACK, BOTH };
+
+typedef struct
+{
+	int move;
+	int castePerm;
+	int ep;
+	int fiftyMove;
+	U64 posKey;
+
+} S_UNDO;
 
 enum
 {
@@ -28,5 +58,18 @@ enum
 enum { FALSE, TRUE };
 
 enum { WKCA = 1, WQCA = 2, BKCA = 4, BQCA = 8 };
+
+/* BOARD REPPIN */
+
+#define  FR2SQ(f,r) ((21 + (f)) + ( (r) * 10 ) )
+#define  SQ64(sq120) Sq120ToSq64[sq120]
+
+extern int Sq120ToSq64[BRD_SQ_NUM];
+extern int Sq64ToSq120[64];
+extern void InitSq120To64();
+extern void TestArrays();
+
+extern void PrintBitboard(U64 bb);
+
 
 #endif
