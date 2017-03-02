@@ -4,39 +4,16 @@
 #include <array>
 #include "Defs.cuh"
 
-struct
-{
-	int pieces[BRD_SQ_NUM];
-	U64 pawns[3];
+#define POP(b) PopBit(b)
+#define CNT(b) CountBits(b)
 
-	int KingSq[2];
+extern int PopBit(U64 *b);
+extern int CountBits(U64 b);
+extern int CountBitsSlow(U64 b);
 
-	int side;
-	int enPas;
-	int fiftyMove;
-
-	int ply;
-	int hisPly;
-
-	int castePerm;
-
-	U64 posKey;
-
-	int pceNum[13];
-	int bigPce[3];
-	int majorPce[3];
-	int minorPce[3];
-
-	S_UNDO history[MAXGAMEMOVES];
-
-
-	//Piece List
-	int pList[13][10];	
-} S_BOARD;
-
-
-
-	
+extern void InitAllBitBoard();
+extern void InitBitMasks();
+extern void InitSq120To64();
 
 
 #endif

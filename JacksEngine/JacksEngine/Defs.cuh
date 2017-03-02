@@ -43,6 +43,36 @@ typedef struct
 
 } S_UNDO;
 
+typedef struct
+{
+	int pieces[BRD_SQ_NUM];
+	U64 pawns[3];
+
+	int KingSq[2];
+
+	int side;
+	int enPas;
+	int fiftyMove;
+
+	int ply;
+	int hisPly;
+
+	int castePerm;
+
+	U64 posKey;
+
+	int pceNum[13];
+	int bigPce[3];
+	int majorPce[3];
+	int minorPce[3];
+
+	S_UNDO history[MAXGAMEMOVES];
+
+
+	//Piece List
+	int pList[13][10];
+} S_BOARD;
+
 enum
 {
 	A1 = 21, B1, C1, D1, E1, F1, G1, H1,
@@ -63,11 +93,14 @@ enum { WKCA = 1, WQCA = 2, BKCA = 4, BQCA = 8 };
 
 #define  FR2SQ(f,r) ((21 + (f)) + ( (r) * 10 ) )
 #define  SQ64(sq120) Sq120ToSq64[sq120]
+#define  CLRBIT(bb, sq) ((bb) &= ClearMask[(sq)])
+#define  SetBit(bb, sq) ((bb) |= SetMask[(sq)])
 
 extern int Sq120ToSq64[BRD_SQ_NUM];
 extern int Sq64ToSq120[64];
-extern void InitSq120To64();
 extern void TestArrays();
+extern U64 SetMask[64];
+extern U64 ClearMask[64];
 
 extern void PrintBitboard(U64 bb);
 
