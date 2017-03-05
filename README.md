@@ -1,2 +1,2 @@
-# C-Sharp-Chess
-C# Chess Engine
+# Cuda-Chess
+Cuda Chess Engine

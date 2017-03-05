@@ -48,3 +48,5 @@
 /JacksEngine/.vs/JacksEngine/v14
 *.opendb
 *.db
+/JacksEngine/JacksEngine/x64/Debug
+/JacksEngine/x64/Debug

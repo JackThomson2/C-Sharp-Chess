@@ -6,10 +6,15 @@ int Sq64ToSq120[64];
 U64 SetMask[64];
 U64 ClearMask[64];
 
+U64 PieceKeys[13][120];
+U64 SideKey;
+U64 CastleKeys[16];
+
 void InitAllBitBoard()
 {
 	InitBitMasks();
 	InitSq120To64();
+	InitHashKeys();
 }
 
 void InitBitMasks()
@@ -26,6 +31,26 @@ void InitBitMasks()
 	{
 		SetMask[index] |= (1ULL << index);
 		ClearMask[index] = ~SetMask[index];
+	}
+}
+
+void InitHashKeys()
+{
+	auto index = 0;
+	auto index2 = 0;
+
+	for(index = 0; index< 13; ++index)
+	{
+		for(index2 = 0; index < 120; ++index2)
+		{
+			PieceKeys[index][index2] = RAND_64;
+		}
+	}
+	SideKey = RAND_64;
+	
+	for(index = 0; index < 16; ++index)
+	{
+		CastleKeys[index] = RAND_64;
 	}
 }
 
@@ -76,7 +101,7 @@ int PopBit(U64 *bb) {
 }
 
 int CountBits(U64 b) {
-	return __popcnt(b);
+	return __popcnt64(b);
 }
 
 int CountBitsSlow(U64 b) {
