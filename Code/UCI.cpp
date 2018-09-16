@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "UCI.h"
 #include <iostream>
 #include <sstream>
@@ -15,7 +14,7 @@ void UCI::loop(int argc, char* argv[])
 
 		istringstream is(cmd);
 
-		token.clear(); // getline() could return empty or blank line
+		token.clear();
 		is >> skipws >> token;
 
 		// The GUI sends 'ponderhit' to tell us to ponder on the same move the
@@ -36,14 +35,12 @@ void UCI::loop(int argc, char* argv[])
 
 		else if (token == "ucinewgame")
 		{
-			//Search::clear();
-			//Tablebases::init(Options["SyzygyPath"]);
-			//Time.availableNodes = 0;
+
 		}
 		else if (token == "isready") cout << "readyok" << endl;
 		else if (token == "go") {
 		//	go(pos, is);
-			cout << "Lets roll" << endl;
+			cout << "Lets go" << endl;
 		}
 
 		else
